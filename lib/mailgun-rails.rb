@@ -50,13 +50,14 @@ module Mailgun
 
         raise Mailgun::DeliveryError.new(error)
       end
-
     end
 
-
+    def self.delivering_email(mail)
+      self.deliver! mail
+      mail.perform_deliveries = false
+    end
   end
-
 end
 
 ActionMailer::Base.add_delivery_method :mailgun, Mailgun::DeliveryMethod
-
+ActionMailer::Base.register_interceptor Mailgun::DeliveryMethod

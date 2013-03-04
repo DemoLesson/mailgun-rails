@@ -100,4 +100,3 @@ end
 
 # Register the helper
 ActionMailer::Base.add_delivery_method :mailgun, Mailgun::DeliveryMethod
-ActionMailer::Base.register_interceptor Mailgun::DeliveryMethod
